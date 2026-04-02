@@ -149,11 +149,17 @@ function setupEventListeners() {
     elements.editor.addEventListener('input', () => {
         state.hasUnsavedChanges = true;
         updateLastSavedText();
+        autoResizeEditor();
         debouncedRender();
     });
 
     // Tab key in editor
     elements.editor.addEventListener('keydown', handleEditorKeydown);
+
+    // Drag and drop on editor
+    elements.editorPanel.addEventListener('dragover', handleDragOver);
+    elements.editorPanel.addEventListener('dragleave', handleDragLeave);
+    elements.editorPanel.addEventListener('drop', handleDrop);
 
     // Sync scroll
     elements.editor.addEventListener('scroll', debounce(handleEditorScroll, 50));
@@ -762,6 +768,78 @@ function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
+}
+
+/**
+ * Auto-resize editor textarea
+ */
+function autoResizeEditor() {
+    elements.editor.style.height = 'auto';
+    elements.editor.style.height = elements.editor.scrollHeight + 'px';
+}
+
+/**
+ * Handle drag over event
+ * @param {DragEvent} event - Drag event
+ */
+function handleDragOver(event) {
+    event.preventDefault();
+    elements.editorPanel.classList.add('drag-over');
+}
+
+/**
+ * Handle drag leave event
+ * @param {DragEvent} event - Drag event
+ */
+function handleDragLeave(event) {
+    event.preventDefault();
+    elements.editorPanel.classList.remove('drag-over');
+}
+
+/**
+ * Handle drop event
+ * @param {DragEvent} event - Drop event
+ */
+async function handleDrop(event) {
+    event.preventDefault();
+    elements.editorPanel.classList.remove('drag-over');
+
+    const files = event.dataTransfer?.files;
+    if (!files || files.length === 0) return;
+
+    const file = files[0];
+
+    if (!isMarkdownFile(file.name)) {
+        showToast('Please drop a markdown file (.md or .markdown)', 'error');
+        return;
+    }
+
+    if (file.size > 1024 * 1024) {
+        showToast('File is larger than 1MB. Import may take a moment.', 'warning');
+    }
+
+    try {
+        const content = await readFileContent(file);
+        const title = stripExtension(file.name);
+
+        state.currentDocument = null;
+        state.hasUnsavedChanges = true;
+        elements.editor.value = preprocessMarkdown(content);
+        elements.documentTitle.textContent = title;
+        updateLastSavedText();
+        autoResizeEditor();
+        renderPreview();
+
+        // Save to history
+        const doc = saveDocument({ title, content });
+        state.currentDocument = doc;
+        state.hasUnsavedChanges = false;
+        loadDocuments();
+
+        showToast(`Imported: ${file.name}`, 'success');
+    } catch (error) {
+        showToast('Failed to import file', 'error');
+    }
 }
 
 // Initialize when DOM is ready

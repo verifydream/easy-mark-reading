@@ -76,7 +76,7 @@
 
 - [x] 6.1 Implement textarea input handling
 - [x] 6.2 Create live preview update on editor input
-- [ ] 6.3 Implement editor auto-resize functionality
+- [x] 6.3 Implement editor auto-resize functionality
 - [x] 6.4 Add keyboard shortcuts (Ctrl+S to save, Ctrl+B for bold)
 - [ ] 6.5 Implement undo/redo support
 - [x] 6.6 Add tab key support in editor
@@ -95,7 +95,7 @@
 
 - [x] 8.1 Implement file picker dialog trigger
 - [x] 8.2 Create file reading with FileReader API
-- [ ] 8.3 Implement drag and drop file upload
+- [x] 8.3 Implement drag and drop file upload
 - [x] 8.4 Add file type validation (.md, .markdown)
 - [x] 8.5 Implement file size warnings (1MB threshold)
 - [x] 8.6 Create filename-to-title parsing
@@ -154,10 +154,10 @@
 
 > **Reference:** `stitch-UI&UX/stitch/indigo_slate/` for icon styles and colors
 
-- [ ] 14.1 Create or acquire SVG icons for: save, import, export, delete, theme, layout modes (ref: header design)
-- [ ] 14.2 Optimize SVG icons for web use
-- [ ] 14.3 Add favicon for the application
-- [ ] 14.4 Create "EasyMark" logo/icon for header (ref: `easymark_header_update/`)
+- [x] 14.1 Create or acquire SVG icons for: save, import, export, delete, theme, layout modes (ref: header design)
+- [x] 14.2 Optimize SVG icons for web use
+- [x] 14.3 Add favicon for the application
+- [x] 14.4 Create "EasyMark" logo/icon for header (ref: `easymark_header_update/`)
 
 ## 15. Testing & Polish
 
@@ -174,12 +174,12 @@
 
 ## 16. Documentation
 
-- [ ] 16.1 Create README.md with project overview
-- [ ] 16.2 Document installation and setup instructions
-- [ ] 16.3 Create user guide for features (ref: `easymark_keyboard_shortcuts_help_modal/` for shortcuts)
-- [ ] 16.4 Document supported markdown syntax
-- [ ] 16.5 Add keyboard shortcuts reference (ref: help modal design)
-- [ ] 16.6 Create agent.md for AI agent integration with design system references
+- [x] 16.1 Create README.md with project overview
+- [x] 16.2 Document installation and setup instructions
+- [x] 16.3 Create user guide for features (ref: `easymark_keyboard_shortcuts_help_modal/` for shortcuts)
+- [x] 16.4 Document supported markdown syntax
+- [x] 16.5 Add keyboard shortcuts reference (ref: help modal design)
+- [x] 16.6 Create agent.md for AI agent integration with design system references
 
 ## 17. Deployment
 

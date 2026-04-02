@@ -111,7 +111,7 @@ marked.use({
         },
 
         // Custom link rendering
-        href(href, title, text) {
+        link(href, title, text) {
             const titleAttr = title ? ` title="${title}"` : '';
             return `<a href="${href}"${titleAttr} target="_blank" rel="noopener noreferrer" class="text-indigo-500 hover:text-indigo-600 underline transition-colors duration-150">${text}</a>`;
         },
