@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasyMark - Markdown Viewer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>M</text></svg>">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/themes.css">
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 transition-colors duration-200">
+    <div id="app" class="h-screen flex flex-col overflow-hidden">
+        <!-- Header -->
+        <header id="header" class="h-[60px] flex items-center justify-between px-4 border-b border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 transition-colors duration-200">
+            <!-- Left Section - Logo & App Name -->
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-indigo-500 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-lg">M</span>
+                </div>
+                <h1 class="text-xl font-semibold text-indigo-500 dark:text-indigo-400">EasyMark</h1>
+            </div>
+
+            <!-- Center Section - Document Title -->
+            <div class="flex flex-col items-center">
+                <span id="documentTitle" class="text-sm font-medium">Untitled</span>
+                <span id="lastSaved" class="text-xs text-slate-500 dark:text-slate-400">Not saved yet</span>
+            </div>
+
+            <!-- Right Section - Action Buttons -->
+            <div class="flex items-center gap-2">
+                <button id="btnSave" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-150" title="Save (Ctrl+S)">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4"/>
+                    </svg>
+                </button>
+                <button id="btnImport" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-150" title="Import File">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                    </svg>
+                </button>
+                <button id="btnExport" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-150" title="Export File">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                </button>
+                <button id="btnHistory" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-150" title="History">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </button>
+                <button id="btnTheme" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors duration-150" title="Toggle Theme">
+                    <svg id="iconSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    <svg id="iconMoon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content - Split View -->
+        <main id="mainContent" class="flex-1 flex overflow-hidden">
+            <!-- Editor Panel -->
+            <section id="editorPanel" class="w-1/2 flex flex-col border-r border-slate-200 dark:border-slate-700 transition-all duration-300">
+                <!-- Panel Header -->
+                <div class="h-12 flex items-center justify-between px-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 transition-colors duration-200">
+                    <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Editor</span>
+                    <div class="flex items-center gap-1">
+                        <button id="btnEditorOnly" class="p-1.5 rounded hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" title="Editor Only">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                            </svg>
+                        </button>
+                        <button id="btnSplitView" class="p-1.5 rounded bg-indigo-100 dark:bg-indigo-900 text-indigo-600 dark:text-indigo-400" title="Split View">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/>
+                            </svg>
+                        </button>
+                        <button id="btnClear" class="p-1.5 rounded hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" title="Clear">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- Editor Textarea -->
+                <div class="flex-1 relative">
+                    <textarea
+                        id="editor"
+                        class="w-full h-full p-6 bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200 font-mono text-[15px] leading-relaxed resize-none focus:outline-none custom-scrollbar transition-colors duration-200"
+                        placeholder="Start writing your markdown here...
+Or import a file using the Import button above."
+                        spellcheck="false"
+                    ></textarea>
+                </div>
+            </section>
+
+            <!-- Preview Panel -->
+            <section id="previewPanel" class="w-1/2 flex flex-col transition-all duration-300">
+                <!-- Panel Header -->
+                <div class="h-12 flex items-center justify-between px-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 transition-colors duration-200">
+                    <span class="text-sm font-medium text-slate-600 dark:text-slate-400">Preview</span>
+                    <div class="flex items-center gap-1">
+                        <button id="btnPreviewOnly" class="p-1.5 rounded hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" title="Preview Only">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </button>
+                        <button id="btnCopyHTML" class="p-1.5 rounded hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" title="Copy HTML">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                            </svg>
+                        </button>
+                        <button id="btnPrint" class="p-1.5 rounded hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" title="Print">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <!-- Preview Content -->
+                <div id="preview" class="flex-1 p-8 overflow-auto bg-white dark:bg-slate-900 custom-scrollbar transition-colors duration-200">
+                    <div id="previewContent" class="prose prose-slate dark:prose-invert max-w-none">
+                        <!-- Rendered markdown will appear here -->
+                        <div class="text-slate-400 dark:text-slate-600 text-center py-12">
+                            <svg class="w-16 h-16 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <p class="text-lg">Your markdown preview will appear here</p>
+                            <p class="text-sm mt-2">Start typing in the editor or import a markdown file</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- History Sidebar -->
+        <aside id="historySidebar" class="fixed top-0 right-0 h-full w-[300px] bg-white dark:bg-slate-800 shadow-xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col">
+            <div class="h-14 flex items-center justify-between px-4 border-b border-slate-200 dark:border-slate-700">
+                <h2 class="font-semibold text-lg">Document History</h2>
+                <button id="btnCloseHistory" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <!-- Search -->
+            <div class="p-4 border-b border-slate-200 dark:border-slate-700">
+                <div class="relative">
+                    <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input
+                        type="text"
+                        id="historySearch"
+                        placeholder="Search documents..."
+                        class="w-full pl-10 pr-4 py-2 bg-slate-50 dark:bg-slate-700 rounded-lg border border-slate-200 dark:border-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors"
+                    >
+                </div>
+            </div>
+            <!-- Document List -->
+            <div id="historyList" class="flex-1 overflow-auto p-4 space-y-2">
+                <!-- History items will be rendered here -->
+            </div>
+            <!-- Footer -->
+            <div class="p-4 border-t border-slate-200 dark:border-slate-700">
+                <div class="text-xs text-slate-500 dark:text-slate-400 mb-2">
+                    Storage: <span id="storageUsage">0 KB</span> of ~5 MB used
+                </div>
+                <button id="btnClearHistory" class="w-full py-2 text-sm text-rose-500 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20 rounded-lg transition-colors">
+                    Clear All History
+                </button>
+            </div>
+        </aside>
+
+        <!-- Backdrop -->
+        <div id="sidebarBackdrop" class="fixed inset-0 bg-black/50 z-40 hidden"></div>
+
+        <!-- Hidden File Input -->
+        <input type="file" id="fileInput" accept=".md,.markdown" class="hidden">
+
+        <!-- Mobile Tabs -->
+        <nav id="mobileTabs" class="hidden md:hidden h-12 border-t border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 flex">
+            <button id="tabEditor" class="flex-1 text-sm font-medium text-indigo-500 border-b-2 border-indigo-500 transition-colors">
+                Editor
+            </button>
+            <button id="tabPreview" class="flex-1 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors">
+                Preview
+            </button>
+        </nav>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="fixed bottom-4 right-4 px-4 py-3 rounded-lg shadow-lg transform translate-y-20 opacity-0 transition-all duration-200 z-50 hidden">
+            <span id="toastMessage"></span>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="/js/main.js"></script>
+</body>
+</html>
