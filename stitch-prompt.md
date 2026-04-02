@@ -51,7 +51,7 @@ HEADER SPECS:
 
 LEFT SECTION:
 - App logo/icon: A stylish "M" lettermark or document icon
-- App name: "MarkView" in modern sans-serif font
+- App name: "EasyMark" in modern sans-serif font
 - Color: Primary accent color
 
 CENTER SECTION:
