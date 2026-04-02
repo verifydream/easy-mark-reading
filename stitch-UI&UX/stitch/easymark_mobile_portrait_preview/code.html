@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Curator - Mobile Preview</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#703700",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#b55d00",
+              "tertiary": "#904900",
+              "inverse-on-surface": "#eaf1ff",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#6063ee",
+              "on-primary-fixed": "#07006c",
+              "outline-variant": "#c7c4d7",
+              "inverse-surface": "#213145",
+              "surface-container-high": "#dce9ff",
+              "surface-container-highest": "#d3e4fe",
+              "on-secondary-fixed": "#13144a",
+              "on-background": "#0b1c30",
+              "surface-dim": "#cbdbf5",
+              "tertiary-fixed": "#ffdcc5",
+              "on-error": "#ffffff",
+              "secondary": "#575992",
+              "surface": "#f8f9ff",
+              "secondary-fixed-dim": "#c0c1ff",
+              "tertiary-fixed-dim": "#ffb783",
+              "surface-variant": "#d3e4fe",
+              "surface-bright": "#f8f9ff",
+              "on-secondary-container": "#494b83",
+              "primary-fixed-dim": "#c0c1ff",
+              "error": "#ba1a1a",
+              "primary-fixed": "#e1e0ff",
+              "on-surface": "#0b1c30",
+              "surface-container-low": "#eff4ff",
+              "secondary-fixed": "#e1e0ff",
+              "background": "#f8f9ff",
+              "secondary-container": "#bdbefe",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#404178",
+              "on-error-container": "#93000a",
+              "surface-container": "#e5eeff",
+              "surface-tint": "#494bd6",
+              "on-tertiary-fixed": "#301400",
+              "outline": "#767586",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#fffbff",
+              "primary": "#4648d4",
+              "inverse-primary": "#c0c1ff",
+              "on-tertiary-container": "#fffbff",
+              "on-surface-variant": "#464554",
+              "on-primary-fixed-variant": "#2f2ebe"
+            },
+            fontFamily: {
+              "headline": ["Manrope", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .markdown-body h1 { @apply text-3xl font-extrabold font-headline text-on-surface mb-6 tracking-tight; }
+        .markdown-body h2 { @apply text-xl font-bold font-headline text-on-surface mt-8 mb-4 tracking-tight; }
+        .markdown-body p { @apply text-on-surface-variant font-body leading-relaxed mb-4 text-[16px]; }
+        .markdown-body blockquote { @apply border-l-4 border-primary-container bg-surface-container-low px-4 py-3 italic rounded-r-xl mb-6; }
+        .markdown-body pre { @apply bg-on-background text-primary-fixed overflow-x-auto p-5 rounded-2xl font-mono text-sm mb-6 shadow-inner; }
+        .markdown-body code { @apply font-mono bg-surface-container-high px-1.5 py-0.5 rounded text-primary font-medium; }
+        .markdown-body ul { @apply list-disc list-outside ml-5 mb-6 space-y-2 text-on-surface-variant; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100/50 dark:border-slate-800/50 shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center px-4 h-16 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-3">
+<button class="flex items-center justify-center p-2 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="text-xl font-extrabold text-slate-900 dark:text-white font-manrope font-semibold tracking-tight">The Curator</h1>
+</div>
+<div class="flex items-center gap-1">
+<button class="flex items-center justify-center p-2 text-indigo-600 dark:text-indigo-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="ml-2 font-manrope font-semibold tracking-tight text-white bg-indigo-600 px-4 py-1.5 rounded-full text-sm shadow-md active:scale-95 duration-200">
+                    Save
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content: Preview Canvas -->
+<main class="min-h-screen pb-32">
+<!-- Editorial Header Section -->
+<div class="w-full h-64 relative">
+<img alt="Content Header" class="w-full h-full object-cover grayscale-[20%] contrast-[1.1]" data-alt="overhead shot of a minimalist workstation with a vintage notebook, expensive pen, and soft morning light casting gentle shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbsXaazOoUDNjsDvwBmX4yh9KOV09MkBprCoR-Mo-mXfMb8SIo5rkwpMEzpqn9s3nJSuKRxt443jUoUgUNtkfz9hQwVbjnZM8RCMLjjatmemzTG9Cfvqwq4X4Ktvpr_z-dPHWlmcKniB6aoI-c4PzbvDCrmiK_VfZ2Ib5CXHzdCzu9MnnqypyQFd715e3Em_j2ATD80MKMYkI4GBXO6ihsSbVuUY7hAktjHGWeAcbwcCDBSweTBAc2qew30cw9-4Cp8n-RluWcOSE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/20 to-transparent"></div>
+</div>
+<!-- Markdown Render Container -->
+<div class="px-6 -mt-16 relative z-10">
+<div class="bg-surface-container-lowest rounded-[2rem] p-8 md:p-12 shadow-[0_20px_50px_rgba(11,28,48,0.08)]">
+<!-- Metadata Badge Area -->
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold uppercase tracking-widest rounded-full">Editorial</span>
+<span class="px-3 py-1 bg-surface-container text-on-surface-variant text-[10px] font-bold uppercase tracking-widest rounded-full">4 min read</span>
+</div>
+<article class="markdown-body">
+<h1>The Architecture of Minimalism in Digital Design</h1>
+<p>Minimalism is not merely the absence of content; it is the intentional curation of space. When we strip away the redundant, the essential finds its voice. In digital architecture, this manifests as rhythmic spacing and tonal hierarchy.</p>
+<blockquote>
+                        "Simplicity is the ultimate sophistication. It requires an brutalist honesty about what truly matters to the user."
+                    </blockquote>
+<h2>Code Implementation</h2>
+<p>Consider how we structure our layout tokens to achieve a "frameless" appearance using tonal shifts instead of borders:</p>
+<pre><code>const layoutConfig = {
+  surface: "#f8f9ff",
+  canvas: "#ffffff",
+  spacing: "clamp(1rem, 5vw, 4rem)",
+  transitions: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+};
+
+function renderEditorial() {
+  return &lt;Container depth="low" /&gt;;
+}</code></pre>
+<h2>Spatial Rhythm</h2>
+<p>We use vertical whitespace (spacing-4 to spacing-16) to define content blocks. This luxury of space signals premium quality, inviting the reader to pause and reflect between concepts.</p>
+<ul>
+<li>Prioritize legibility over density</li>
+<li>Use high-contrast typography for hierarchy</li>
+<li>Implement subtle glassmorphism for overlays</li>
+</ul>
+<p>As we move forward into a new era of curated digital experiences, the "Digital Architect" must treat every pixel as a deliberate choice, not a default state.</p>
+</article>
+<!-- Floating Author Card -->
+<div class="mt-12 p-6 bg-surface-container-low rounded-2xl flex items-center gap-4">
+<div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white">
+<img alt="Author Avatar" class="w-full h-full object-cover" data-alt="portrait of a professional creative woman in a white linen shirt looking thoughtful in a bright studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcDiEoTJC2CBSueU_pXV99tOwXAk2j5mgmib8lt1-m2bgfrsFyLPJNzRVscX0MHl7U7VBJ9ayIZqXoSKann0H1EvD9raNwu_77Uyo2vN_CZbyPNDmc2uCodywiC2XkgJMcHF_9Mki_0t2Lajt3QOW5V9BV4XdtMO1Ilf6J3EDzbpMdQLuqvbMlKF6c0ivCVv9xh_mpDybqy8sJVDWKLi9nOR7drMkbcWMIeMRmTP6MK9KwZV6XSdxkAGYIpCRmBkomwZ4CIMmcXRs"/>
+</div>
+<div>
+<p class="text-sm font-headline font-bold text-on-surface">Elena Vance</p>
+<p class="text-xs text-on-surface-variant">Lead Design Curator</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] rounded-t-3xl">
+<!-- Editor Tab (Inactive) -->
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-8 py-2 hover:text-indigo-500 transition-colors active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="edit_square">edit_square</span>
+<span class="font-inter text-[11px] font-bold uppercase tracking-wider">Editor</span>
+</a>
+<!-- Preview Tab (Active) -->
+<a class="flex flex-col items-center justify-center bg-indigo-600 text-white rounded-2xl px-8 py-2 active:scale-90 duration-150 shadow-lg shadow-indigo-200 dark:shadow-none" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="visibility" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<span class="font-inter text-[11px] font-bold uppercase tracking-wider">Preview</span>
+</a>
+</nav>
+<!-- Floating Action for Quick Access -->
+<div class="fixed bottom-28 right-6 z-40">
+<button class="w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white shadow-xl shadow-primary/30 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</div>
+</body></html>

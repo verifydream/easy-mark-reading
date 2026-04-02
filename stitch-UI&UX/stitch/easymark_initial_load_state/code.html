@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EasyMark | Initializing Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#ffdad6",
+              "error": "#ba1a1a",
+              "on-error-container": "#93000a",
+              "secondary": "#575992",
+              "on-primary-fixed-variant": "#2f2ebe",
+              "tertiary-fixed-dim": "#ffb783",
+              "on-tertiary-fixed-variant": "#703700",
+              "surface-container-high": "#dce9ff",
+              "on-secondary-container": "#494b83",
+              "on-error": "#ffffff",
+              "surface-dim": "#cbdbf5",
+              "primary-fixed": "#e1e0ff",
+              "on-background": "#0b1c30",
+              "surface-container-low": "#eff4ff",
+              "secondary-fixed-dim": "#c0c1ff",
+              "primary": "#4648d4",
+              "secondary-container": "#bdbefe",
+              "primary-container": "#6063ee",
+              "outline-variant": "#c7c4d7",
+              "on-secondary": "#ffffff",
+              "surface-bright": "#f8f9ff",
+              "on-secondary-fixed": "#13144a",
+              "tertiary-container": "#b55d00",
+              "surface": "#f8f9ff",
+              "on-primary-fixed": "#07006c",
+              "on-primary-container": "#fffbff",
+              "inverse-surface": "#213145",
+              "inverse-primary": "#c0c1ff",
+              "inverse-on-surface": "#eaf1ff",
+              "on-primary": "#ffffff",
+              "surface-tint": "#494bd6",
+              "tertiary": "#904900",
+              "surface-container-highest": "#d3e4fe",
+              "surface-container": "#e5eeff",
+              "surface-container-lowest": "#ffffff",
+              "primary-fixed-dim": "#c0c1ff",
+              "on-tertiary-fixed": "#301400",
+              "on-surface-variant": "#464554",
+              "outline": "#767586",
+              "secondary-fixed": "#e1e0ff",
+              "tertiary-fixed": "#ffdcc5",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#0b1c30",
+              "on-secondary-fixed-variant": "#404178",
+              "surface-variant": "#d3e4fe",
+              "on-tertiary-container": "#fffbff",
+              "background": "#f8f9ff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes subtlePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.85; transform: scale(0.98); }
+        }
+        @keyframes loadingProgress {
+            0% { width: 0%; left: 0; }
+            50% { width: 40%; left: 30%; }
+            100% { width: 100%; left: 0; }
+        }
+        .pulse-logo {
+            animation: subtlePulse 2s ease-in-out infinite;
+        }
+        .loading-bar-inner {
+            animation: loadingProgress 3s ease-in-out infinite;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body overflow-hidden">
+<!-- Top Loading Bar (High Quality Detail) -->
+<div class="fixed top-0 left-0 w-full h-1 bg-surface-container z-50">
+<div class="loading-bar-inner h-full bg-gradient-to-r from-primary via-primary-container to-primary"></div>
+</div>
+<!-- Main Container -->
+<main class="relative h-screen w-full flex flex-col items-center justify-center">
+<!-- Background Layering -->
+<div class="absolute inset-0 z-0">
+<!-- Subtle Radial Gradient for Depth -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-surface-container-low to-surface"></div>
+<!-- Editorial Texture Overlay -->
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" data-alt="subtle paper texture overlay for a premium editorial feel" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAqzrkS6dCg3SCT-JDB4byWPcHx0OxJ-sqicxqjhHgPqtFo6LPevJ6j8q1TxmnCmsqDrs7AAA3VOXXthI0WKfM7YI4SU1mUhuXEIBY_PxL5ETPW36S0pDXGRq3R9gJPTCtH3zK71f3J6ox6f9pol_C0BeJ4Md3SJ9eyL4G8SWMEtnZIIbC_rSGWYl3sF0Y4YmwOs1qSCttU8r3G0OriGvJyTt8zEfhAYe9Kv5pd5F0fpKY_c8HUMJzzLKzFwHrKTPdz9Ou8PMRvnTQ');"></div>
+</div>
+<!-- Central Content -->
+<div class="relative z-10 flex flex-col items-center">
+<!-- Pulse App Logo: Stylish 'M' Lettermark -->
+<div class="pulse-logo mb-12 relative">
+<!-- Outer Glow -->
+<div class="absolute -inset-8 bg-primary/10 blur-3xl rounded-full"></div>
+<!-- Logo Frame -->
+<div class="relative w-24 h-24 bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-6xl text-primary font-bold" data-icon="edit_note">edit_note</span>
+</div>
+<!-- Floating Accent Dot -->
+<div class="absolute -top-1 -right-1 w-4 h-4 bg-tertiary rounded-full border-4 border-surface shadow-sm"></div>
+</div>
+<!-- Loading Text -->
+<div class="text-center space-y-4">
+<h1 class="font-headline text-2xl font-bold tracking-tight text-on-surface">
+                    EasyMark
+                </h1>
+<div class="flex flex-col items-center gap-2">
+<p class="text-on-surface-variant font-medium tracking-wide">
+                        Initializing your workspace...
+                    </p>
+<!-- Progress Metadata -->
+<div class="flex items-center gap-3 mt-4">
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold">Syncing Documents</span>
+<div class="w-1 h-1 rounded-full bg-outline-variant"></div>
+<span class="text-[10px] uppercase tracking-widest text-outline font-bold">Optimizing Assets</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Branding/Context -->
+<div class="absolute bottom-12 left-0 w-full px-12 flex justify-between items-end">
+<div class="flex flex-col gap-1">
+<span class="text-[11px] text-outline font-semibold uppercase tracking-[0.2em]">The Editorial Architect</span>
+<span class="text-[10px] text-outline-variant font-medium">v2.4.0 — Stable Build</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex -space-x-3">
+<div class="w-8 h-8 rounded-full border-2 border-surface overflow-hidden bg-slate-200">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="close up headshot of a creative professional in a bright studio with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcDJu3ZzJtBzuKEdKygzEpfP2SNjw_m3nY65zF9JvwmBvPQGsXvZkK0XE4WF6fSoGgr7RMJIIqgasGyfmrHQpoT3IV8XcRIoj36wknc2goC-uZ8fsuIqcKopYYTjQf8voSZ0hnBe52GxpMgUGpmgruTTXo6Som6liGkrJC2MBytT8mGEn_Jmuu3GU_cbL69Gp8cd80lufdr5uISRXfE1ChXYIcafDcZ6caj5wwpkO_Ua3DuUiybeUL-1Fjnc0GZsk6KzQMPggL4zc"/>
+</div>
+<div class="w-8 h-8 rounded-full border-2 border-surface flex items-center justify-center bg-primary-container text-[10px] text-white font-bold">
+                        +4
+                    </div>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-[11px] text-on-surface font-semibold">Active Session</span>
+<span class="text-[10px] text-on-surface-variant">The Digital Nomad</span>
+</div>
+</div>
+</div>
+</main>
+<!-- UI Elements Background Decoration (The Architect Style) -->
+<div class="fixed top-24 left-24 w-64 h-64 border border-outline-variant/5 rounded-full pointer-events-none"></div>
+<div class="fixed -bottom-32 -right-32 w-96 h-96 border border-primary/5 rounded-full pointer-events-none"></div>
+<!-- Shared Component Shell Representation (Suppressed for focused journey as per mandate) -->
+<!-- Navigation is suppressed here because this is a focused system state -->
+</body></html>

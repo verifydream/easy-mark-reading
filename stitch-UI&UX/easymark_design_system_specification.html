@@ -1,0 +1,68 @@
+# EasyMark Design System Specification
+
+## 1. Design Tokens
+
+### Colors
+- **Primary (Indigo):**
+  - Light: `#6366f1` (indigo-500)
+  - Main: `#4f46e5` (indigo-600)
+  - Dark: `#4338ca` (indigo-700)
+- **Success (Emerald):** `#10b981`
+- **Warning (Amber):** `#f59e0b`
+- **Error (Rose):** `#f43f5e`
+- **Neutral (Slate):**
+  - `slate-50`: `#f8fafc` (Light Background)
+  - `slate-100`: `#f1f5f9`
+  - `slate-200`: `#e2e8f0` (Borders)
+  - `slate-400`: `#94a3b8`
+  - `slate-600`: `#475569`
+  - `slate-800`: `#1e293b` (Dark Background / Text)
+  - `slate-900`: `#0f172a` (Deep Background)
+
+### Typography
+- **Sans-Serif (UI):** Inter, system-ui, sans-serif
+- **Monospace (Editor/Code):** JetBrains Mono, Fira Code, monospace
+- **Scale:** 12px (Caption), 14px (Label), 15px (Editor), 16px (Body), 18px (H4), 20px (H3), 24px (H2), 32px (H1), 48px (Display)
+- **Weights:** Regular (400), Medium (500), Semibold (600), Bold (700)
+- **Line Heights:** 1.4 (Tight), 1.6 (Normal), 1.7 (Reading)
+
+### Spacing
+- **Scale:** 4px, 8px, 12px, 16px, 24px, 32px, 48px, 64px
+- **Container Padding:** 24px
+- **Section Gap:** 32px
+
+### Borders & Radius
+- **Radius:** 4px (Sm), 8px (Md), 12px (Lg), 16px (Xl)
+- **Width:** 1px (Standard), 2px (Focus/Dashed)
+- **Colors:** `slate-200` (Light Mode), `slate-700` (Dark Mode)
+
+### Shadows
+- **Sm:** `0 1px 2px rgba(0,0,0,0.05)`
+- **Md:** `0 4px 6px rgba(0,0,0,0.1)`
+- **Lg:** `0 10px 15px rgba(0,0,0,0.1)`
+- **Xl:** `0 20px 25px rgba(0,0,0,0.15)`
+
+### Z-Index
+- **Dropdown:** 100
+- **Sticky Header:** 50
+- **Modal:** 1000
+- **Toast:** 1100
+
+## 2. Components & Interactions
+
+### Buttons
+- **Hover:** 150ms background color shift
+- **Active:** 100ms scale(0.95)
+- **Focus:** 2px ring outline in primary indigo
+
+### Transitions
+- **Layout Switch:** 300ms ease-out width animation
+- **Theme Switch:** 200ms ease-in-out global color transition
+- **Sidebar:** 300ms cubic-bezier slide-in
+- **Modal:** 200ms ease-out scale-in
+
+## 3. Screen Inventory (Ready for Handoff)
+1.  **Desktop - Split View (Light/Dark)**
+2.  **Layout Modes (Preview/Editor Only)**
+3.  **Responsive Views (Tablet/Mobile Portrait/Landscape)**
+4.  **Interaction States (Modals/Loaders/Toasts)**

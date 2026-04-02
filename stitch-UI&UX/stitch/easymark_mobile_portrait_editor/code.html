@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Curator - Mobile Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#703700",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#b55d00",
+              "tertiary": "#904900",
+              "inverse-on-surface": "#eaf1ff",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#6063ee",
+              "on-primary-fixed": "#07006c",
+              "outline-variant": "#c7c4d7",
+              "inverse-surface": "#213145",
+              "surface-container-high": "#dce9ff",
+              "surface-container-highest": "#d3e4fe",
+              "on-secondary-fixed": "#13144a",
+              "on-background": "#0b1c30",
+              "surface-dim": "#cbdbf5",
+              "tertiary-fixed": "#ffdcc5",
+              "on-error": "#ffffff",
+              "secondary": "#575992",
+              "surface": "#f8f9ff",
+              "secondary-fixed-dim": "#c0c1ff",
+              "tertiary-fixed-dim": "#ffb783",
+              "surface-variant": "#d3e4fe",
+              "surface-bright": "#f8f9ff",
+              "on-secondary-container": "#494b83",
+              "primary-fixed-dim": "#c0c1ff",
+              "error": "#ba1a1a",
+              "primary-fixed": "#e1e0ff",
+              "on-surface": "#0b1c30",
+              "surface-container-low": "#eff4ff",
+              "secondary-fixed": "#e1e0ff",
+              "background": "#f8f9ff",
+              "secondary-container": "#bdbefe",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#404178",
+              "on-error-container": "#93000a",
+              "surface-container": "#e5eeff",
+              "surface-tint": "#494bd6",
+              "on-tertiary-fixed": "#301400",
+              "outline": "#767586",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#fffbff",
+              "primary": "#4648d4",
+              "inverse-primary": "#c0c1ff",
+              "on-tertiary-container": "#fffbff",
+              "on-surface-variant": "#464554",
+              "on-primary-fixed-variant": "#2f2ebe"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "mono": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-background selection:bg-secondary-container/30">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100/50 dark:border-slate-800/50 shadow-sm dark:shadow-none docked full-width top-0 sticky z-50 h-14">
+<div class="flex justify-between items-center px-4 h-full w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-3">
+<button class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 p-2 rounded-lg">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<span class="text-xl font-extrabold text-slate-900 dark:text-white font-headline tracking-tight">EasyMark</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 p-2 rounded-lg">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+<button class="bg-primary text-white font-semibold px-4 py-1.5 rounded-full text-sm active:scale-95 transition-transform duration-200">
+                    Save
+                </button>
+</div>
+</div>
+</header>
+<!-- Content Area (Mobile Scroll View) -->
+<main class="flex flex-col h-[calc(100vh-56px)] overflow-hidden">
+<!-- Pull to Refresh Sync Indicator (Active/Visible State) -->
+<div class="flex justify-center items-center py-3 bg-surface-container-low overflow-hidden">
+<div class="flex items-center gap-2 text-primary font-medium text-xs">
+<span class="material-symbols-outlined animate-spin text-sm" style="font-variation-settings: 'wght' 600">sync</span>
+<span class="font-label uppercase tracking-widest">Syncing Draft...</span>
+</div>
+</div>
+<!-- Editor/Preview Tabs -->
+<div class="flex border-b border-outline-variant/10 bg-surface">
+<button class="flex-1 py-3 text-sm font-bold tracking-wider uppercase border-b-2 border-primary text-primary font-label">
+                Editor
+            </button>
+<button class="flex-1 py-3 text-sm font-bold tracking-wider uppercase border-b-2 border-transparent text-on-surface-variant/50 font-label">
+                Preview
+            </button>
+</div>
+<!-- Frameless Editor Canvas -->
+<div class="flex-1 overflow-y-auto bg-surface-container-lowest px-6 pt-8 pb-32">
+<div class="max-w-prose mx-auto">
+<!-- Document Title -->
+<h1 class="font-headline text-3xl font-extrabold text-on-background mb-6 leading-tight">
+                    The Editorial Architect
+                </h1>
+<!-- Markdown Content -->
+<div class="font-mono text-[16px] leading-[1.6] text-on-surface-variant space-y-6">
+<p>
+<span class="text-primary-container">#</span> Welcome to the Future of Writing
+                    </p>
+<p>
+                        This is where the act of <span class="bg-secondary-container/20 px-1 rounded text-secondary font-semibold">creation</span> meets digital precision. No distractions, just rhythm and light.
+                    </p>
+<p>
+<span class="text-primary-container">##</span> Core Principles
+                    </p>
+<ul class="space-y-2">
+<li><span class="text-primary-container">-</span> Soft structuralism over rigid lines.</li>
+<li><span class="text-primary-container">-</span> Spatial rhythm for clarity.</li>
+<li><span class="text-primary-container">-</span> Premium typography for focus.</li>
+</ul>
+<p>
+<span class="text-primary-container">&gt;</span> "Design is not just what it looks like and feels like. Design is how it works."
+                    </p>
+<p>
+                        This editor treats markdown not as a utility, but as a <span class="italic text-on-surface underline decoration-primary-container/30 decoration-2 underline-offset-4">high-end writing environment</span>. Use the toolbar below to architect your thoughts.
+                    </p>
+</div>
+</div>
+</div>
+<!-- Specialized Touch Toolbar (Simulated Keyboard Attachment) -->
+<div class="fixed bottom-0 left-0 w-full bg-surface-container-high/95 backdrop-blur-md border-t border-outline-variant/20 z-40">
+<div class="flex items-center gap-1 overflow-x-auto px-4 py-2.5 hide-scrollbar">
+<button class="min-w-[40px] h-10 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5 text-primary active:bg-primary-container active:text-white transition-all">
+<span class="font-mono font-bold text-lg">#</span>
+</button>
+<button class="min-w-[40px] h-10 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5 text-primary active:bg-primary-container active:text-white transition-all">
+<span class="font-mono font-bold text-lg">*</span>
+</button>
+<button class="min-w-[40px] h-10 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5 text-primary active:bg-primary-container active:text-white transition-all">
+<span class="font-mono font-bold text-lg">-</span>
+</button>
+<button class="min-w-[40px] h-10 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5 text-primary active:bg-primary-container active:text-white transition-all">
+<span class="font-mono font-bold text-lg">[]</span>
+</button>
+<button class="min-w-[40px] h-10 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5 text-primary active:bg-primary-container active:text-white transition-all">
+<span class="font-mono font-bold text-lg">&gt;</span>
+</button>
+<div class="w-[1px] h-6 bg-outline-variant/30 mx-1 shrink-0"></div>
+<button class="min-w-[40px] h-10 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5 text-primary active:bg-primary-container active:text-white transition-all">
+<span class="material-symbols-outlined text-xl">link</span>
+</button>
+<button class="min-w-[40px] h-10 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5 text-primary active:bg-primary-container active:text-white transition-all">
+<span class="material-symbols-outlined text-xl">image</span>
+</button>
+<button class="min-w-[40px] h-10 flex items-center justify-center bg-surface-container-lowest rounded-xl shadow-sm border border-outline-variant/5 text-primary active:bg-primary-container active:text-white transition-all">
+<span class="material-symbols-outlined text-xl">format_list_bulleted</span>
+</button>
+</div>
+<!-- Bottom Safety Area -->
+<div class="h-6 bg-surface-container-high/95"></div>
+</div>
+</main>
+<!-- BottomNavBar (Hidden per instructions for focused editor state or as per mobile shell pivot) -->
+<!-- Note: Suppression logic applied for focused writing state -->
+</body></html>

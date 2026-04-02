@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EasyMark Shortcuts &amp; Help</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#b55d00",
+              "on-secondary-container": "#494b83",
+              "background": "#f8f9ff",
+              "on-primary-fixed": "#07006c",
+              "inverse-on-surface": "#eaf1ff",
+              "on-tertiary-fixed-variant": "#703700",
+              "surface-container-lowest": "#ffffff",
+              "secondary-fixed-dim": "#c0c1ff",
+              "outline": "#767586",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#ffb783",
+              "surface-variant": "#d3e4fe",
+              "surface-container": "#e5eeff",
+              "secondary": "#575992",
+              "primary-container": "#6063ee",
+              "on-primary-fixed-variant": "#2f2ebe",
+              "primary": "#4648d4",
+              "error-container": "#ffdad6",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#ffdcc5",
+              "on-tertiary-fixed": "#301400",
+              "on-surface": "#0b1c30",
+              "inverse-primary": "#c0c1ff",
+              "surface-container-high": "#dce9ff",
+              "on-tertiary-container": "#fffbff",
+              "on-primary-container": "#fffbff",
+              "on-tertiary": "#ffffff",
+              "on-background": "#0b1c30",
+              "surface-container-highest": "#d3e4fe",
+              "surface": "#f8f9ff",
+              "surface-tint": "#494bd6",
+              "on-primary": "#ffffff",
+              "surface-bright": "#f8f9ff",
+              "secondary-container": "#bdbefe",
+              "primary-fixed": "#e1e0ff",
+              "inverse-surface": "#213145",
+              "on-secondary-fixed": "#13144a",
+              "on-secondary": "#ffffff",
+              "surface-container-low": "#eff4ff",
+              "on-secondary-fixed-variant": "#404178",
+              "on-surface-variant": "#464554",
+              "outline-variant": "#c7c4d7",
+              "surface-dim": "#cbdbf5",
+              "primary-fixed-dim": "#c0c1ff",
+              "secondary-fixed": "#e1e0ff",
+              "tertiary": "#904900",
+              "on-error": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "mono": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c7c4d7;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden">
+<!-- Blurred Editor Background Simulation -->
+<div class="fixed inset-0 grid grid-cols-[300px_1fr_1fr] h-screen pointer-events-none opacity-40 grayscale">
+<aside class="bg-surface-container p-6"></aside>
+<main class="bg-surface-container-lowest p-12"></main>
+<section class="bg-surface-container-low p-12 border-l border-outline-variant/10"></section>
+</div>
+<!-- Modal Overlay -->
+<div class="fixed inset-0 bg-on-surface/20 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+<!-- Modal Container (600px wide) -->
+<div class="bg-surface-container-lowest w-full max-w-[600px] max-h-[870px] rounded-xl shadow-[0_12px_40px_rgba(11,28,48,0.12)] flex flex-col overflow-hidden">
+<!-- Modal Header -->
+<header class="flex items-center justify-between px-8 py-6 bg-surface-container-low/50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">keyboard</span>
+</div>
+<h1 class="font-headline font-bold text-2xl tracking-tight">Keyboard Shortcuts</h1>
+</div>
+<button class="w-8 h-8 rounded-full flex items-center justify-center hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">close</span>
+</button>
+</header>
+<!-- Modal Content (Scrollable) -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-8 py-4">
+<!-- Navigation Tabs (Editorial Style) -->
+<nav class="flex gap-6 mb-8 border-b border-outline-variant/10">
+<button class="pb-3 text-primary font-semibold border-b-2 border-primary text-sm">Shortcuts</button>
+<button class="pb-3 text-on-surface-variant hover:text-primary transition-colors text-sm">Markdown Guide</button>
+<button class="pb-3 text-on-surface-variant hover:text-primary transition-colors text-sm">About</button>
+</nav>
+<!-- Shortcut Categories Grid -->
+<div class="grid grid-cols-1 gap-10">
+<!-- FILE OPERATIONS -->
+<section>
+<header class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">folder_open</span>
+<h2 class="text-[11px] font-bold tracking-[0.1em] text-on-surface-variant uppercase">FILE OPERATIONS</h2>
+</header>
+<div class="space-y-3">
+<div class="flex justify-between items-center group">
+<span class="text-sm text-on-surface/80 group-hover:text-on-surface transition-colors">Save</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 min-w-[32px] text-center bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20 shadow-sm">Ctrl</kbd>
+<kbd class="px-1.5 py-0.5 min-w-[32px] text-center bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20 shadow-sm">S</kbd>
+</div>
+</div>
+<div class="flex justify-between items-center group">
+<span class="text-sm text-on-surface/80 group-hover:text-on-surface transition-colors">Open</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 min-w-[32px] text-center bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20 shadow-sm">Ctrl</kbd>
+<kbd class="px-1.5 py-0.5 min-w-[32px] text-center bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20 shadow-sm">O</kbd>
+</div>
+</div>
+<div class="flex justify-between items-center group">
+<span class="text-sm text-on-surface/80 group-hover:text-on-surface transition-colors">Export</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 min-w-[32px] text-center bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20 shadow-sm">Ctrl</kbd>
+<kbd class="px-1.5 py-0.5 min-w-[32px] text-center bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20 shadow-sm">E</kbd>
+</div>
+</div>
+</div>
+</section>
+<!-- EDITING -->
+<section>
+<header class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">edit_note</span>
+<h2 class="text-[11px] font-bold tracking-[0.1em] text-on-surface-variant uppercase">EDITING</h2>
+</header>
+<div class="grid grid-cols-2 gap-x-8 gap-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface/80">Bold</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">Ctrl</kbd>
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">B</kbd>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface/80">Italic</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">Ctrl</kbd>
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">I</kbd>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface/80">Insert link</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">Ctrl</kbd>
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">K</kbd>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface/80">Indent</span>
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">Tab</kbd>
+</div>
+<div class="flex justify-between items-center col-span-2">
+<span class="text-sm text-on-surface/80">Outdent</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">Shift</kbd>
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">Tab</kbd>
+</div>
+</div>
+</div>
+</section>
+<!-- VIEW -->
+<section>
+<header class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]">visibility</span>
+<h2 class="text-[11px] font-bold tracking-[0.1em] text-on-surface-variant uppercase">VIEW</h2>
+</header>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface/80">Split View</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">Ctrl</kbd>
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">\</kbd>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface/80">Dark Mode</span>
+<div class="flex gap-1">
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">Ctrl</kbd>
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">D</kbd>
+</div>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-sm text-on-surface/80">Fullscreen</span>
+<kbd class="px-1.5 py-0.5 bg-surface-container-high rounded text-[11px] font-mono border border-outline-variant/20">F11</kbd>
+</div>
+</div>
+</section>
+<!-- Markdown Cheatsheet (The Render Preview Section) -->
+<section class="mt-4 p-6 bg-surface-container-low rounded-xl">
+<header class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-tertiary text-[18px]">article</span>
+<h2 class="text-[11px] font-bold tracking-[0.1em] text-on-surface-variant uppercase">Markdown Cheatsheet</h2>
+</header>
+<div class="grid grid-cols-2 gap-x-4 gap-y-4">
+<div class="text-[12px] font-mono text-primary bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/10 shadow-sm"># Heading 1</div>
+<div class="text-[12px] font-headline font-bold flex items-center px-3">Heading 1</div>
+<div class="text-[12px] font-mono text-primary bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/10 shadow-sm">**Bold Text**</div>
+<div class="text-[12px] font-body font-bold flex items-center px-3">Bold Text</div>
+<div class="text-[12px] font-mono text-primary bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/10 shadow-sm">1. Ordered List</div>
+<div class="text-[12px] font-body flex items-center px-3">1. Ordered List</div>
+</div>
+</section>
+<!-- About Section -->
+<section class="border-t border-outline-variant/10 pt-8 pb-4">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h3 class="font-headline font-extrabold text-indigo-700 text-lg mb-1">The Curator</h3>
+<p class="text-xs text-on-surface-variant">Precision Markdown Editor v2.4.0</p>
+</div>
+<div class="flex gap-4">
+<a class="text-[13px] text-primary font-semibold hover:underline flex items-center gap-1" href="#">
+                                    GitHub <span class="material-symbols-outlined text-[14px]">arrow_outward</span>
+</a>
+<a class="text-[13px] text-primary font-semibold hover:underline flex items-center gap-1" href="#">
+                                    Support <span class="material-symbols-outlined text-[14px]">support_agent</span>
+</a>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-6 leading-relaxed">
+                            Crafted for writers who demand rhythm and structure. <br/>
+                            © 2024 Editorial Architect Team. All rights reserved.
+                        </p>
+</section>
+</div>
+</div>
+<!-- Modal Footer (Action) -->
+<footer class="px-8 py-6 bg-surface-container-low/30 border-t border-outline-variant/5">
+<button class="w-full py-3 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-lg font-semibold text-sm shadow-sm hover:opacity-90 transition-opacity active:scale-[0.98] duration-150">
+                    Got it, let's write
+                </button>
+</footer>
+</div>
+</div>
+</body></html>

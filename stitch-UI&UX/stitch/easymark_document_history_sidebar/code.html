@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EasyMark - Document History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-primary": "#c0c1ff",
+              "secondary-container": "#bdbefe",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#d3e4fe",
+              "on-secondary-fixed": "#13144a",
+              "primary-container": "#6063ee",
+              "on-surface-variant": "#464554",
+              "primary-fixed-dim": "#c0c1ff",
+              "surface-container-high": "#dce9ff",
+              "surface-container": "#e5eeff",
+              "on-tertiary-fixed-variant": "#703700",
+              "surface": "#f8f9ff",
+              "outline-variant": "#c7c4d7",
+              "on-tertiary-container": "#fffbff",
+              "secondary": "#575992",
+              "on-primary-fixed": "#07006c",
+              "tertiary": "#904900",
+              "tertiary-container": "#b55d00",
+              "on-secondary-container": "#494b83",
+              "background": "#f8f9ff",
+              "on-primary-fixed-variant": "#2f2ebe",
+              "tertiary-fixed": "#ffdcc5",
+              "inverse-surface": "#213145",
+              "on-primary": "#ffffff",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f8f9ff",
+              "primary": "#4648d4",
+              "tertiary-fixed-dim": "#ffb783",
+              "surface-tint": "#494bd6",
+              "secondary-fixed": "#e1e0ff",
+              "primary-fixed": "#e1e0ff",
+              "surface-dim": "#cbdbf5",
+              "on-error": "#ffffff",
+              "surface-variant": "#d3e4fe",
+              "on-background": "#0b1c30",
+              "surface-container-lowest": "#ffffff",
+              "on-error-container": "#93000a",
+              "on-tertiary": "#ffffff",
+              "surface-container-low": "#eff4ff",
+              "secondary-fixed-dim": "#c0c1ff",
+              "on-primary-container": "#fffbff",
+              "error": "#ba1a1a",
+              "outline": "#767586",
+              "on-surface": "#0b1c30",
+              "inverse-on-surface": "#eaf1ff",
+              "on-tertiary-fixed": "#301400",
+              "on-secondary-fixed-variant": "#404178"
+            },
+            fontFamily: {
+              "headline": ["Manrope", "sans-serif"],
+              "body": ["Inter", "sans-serif"],
+              "label": ["Inter", "sans-serif"],
+              "mono": ["JetBrains Mono", "monospace"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #d3e4fe;
+        border-radius: 10px;
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex min-h-screen overflow-hidden">
+<!-- Main Workspace (Editor Canvas) -->
+<main class="flex-1 flex flex-col min-w-0 bg-surface">
+<!-- TopNavBar - Rendered per JSON Mapping -->
+<nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md flex justify-between items-center px-6 py-3 w-full border-b border-slate-100 dark:border-slate-800 font-manrope tracking-tight text-sm shadow-sm dark:shadow-none docked top-0 z-10">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-indigo-600 dark:text-indigo-400">EasyMark</span>
+<div class="hidden md:flex gap-6">
+<a class="text-slate-500 dark:text-slate-400 hover:text-indigo-500 transition-colors" href="#">Documents</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-indigo-500 transition-colors" href="#">Templates</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-indigo-500 transition-colors" href="#">Settings</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="bg-surface-container-low border-none rounded-full pl-10 pr-4 py-1.5 text-sm focus:ring-2 focus:ring-primary/20 w-48" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-50/50 rounded-full transition-colors">
+<span class="material-symbols-outlined">history</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50/50 rounded-full transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="bg-indigo-600 text-white px-4 py-1.5 rounded-lg font-semibold hover:bg-indigo-700 transition-colors shadow-sm scale-95 active:duration-150">
+                        Publish
+                    </button>
+</div>
+</div>
+</nav>
+<!-- Frameless Editor Canvas -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Left Side Panel (Blueprint Mapping) -->
+<aside class="hidden lg:flex flex-col h-screen p-4 space-y-6 h-full w-72 border-r border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 font-inter text-xs uppercase tracking-widest font-semibold transition-all duration-300 ease-in-out">
+<div class="space-y-1">
+<div class="px-3 py-2">
+<h2 class="text-lg font-manrope text-slate-900 dark:text-slate-100 normal-case tracking-normal">Document History</h2>
+<p class="text-[10px] text-slate-400 normal-case tracking-normal">Local Storage</p>
+</div>
+</div>
+<div class="flex-1 space-y-1 overflow-y-auto custom-scrollbar">
+<div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 p-3 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">edit_note</span>
+<span>Current</span>
+</div>
+<div class="flex items-center gap-3 bg-white dark:bg-slate-900 text-indigo-600 dark:text-indigo-400 rounded-lg p-3 shadow-sm cursor-pointer">
+<span class="material-symbols-outlined">folder</span>
+<span>All Files</span>
+</div>
+<div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 p-3 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">star</span>
+<span>Favorites</span>
+</div>
+<div class="flex items-center gap-3 text-slate-500 dark:text-slate-400 p-3 hover:bg-slate-100 dark:hover:bg-slate-900 rounded-lg cursor-pointer">
+<span class="material-symbols-outlined">delete</span>
+<span>Trash</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-200/50">
+<button class="w-full bg-primary text-white p-3 rounded-xl flex items-center justify-center gap-2 normal-case tracking-normal font-bold">
+<span class="material-symbols-outlined text-sm">add</span>
+                        New Document
+                    </button>
+<div class="mt-4 space-y-2 opacity-60">
+<div class="flex items-center gap-2 normal-case tracking-normal">
+<span class="material-symbols-outlined text-xs">cloud_queue</span>
+<span>Storage: 1.2GB</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Editor Content -->
+<section class="flex-1 bg-surface-container-lowest p-12 overflow-y-auto flex justify-center">
+<div class="max-w-3xl w-full">
+<h1 class="font-headline text-4xl font-extrabold text-on-surface mb-8 tracking-tight">The Art of Minimalist Writing</h1>
+<div class="font-mono text-lg leading-relaxed text-on-surface-variant space-y-6">
+<p>Markdown is not just a syntax; it's a philosophy of focus. By removing the distractions of complex toolbars and formatting menus, we return to the core of communication: the word.</p>
+<p>In this editorial environment, every stroke is intentional. The generous white space surrounding these words acts as a visual lung, allowing your thoughts to breathe and expand naturally.</p>
+<p>### Core Principles</p>
+<p>1. **Speed**: Write at the speed of thought.
+2. **Portability**: Plain text is forever.
+3. **Clarity**: Structure is inherent in the syntax.</p>
+<p>As you curate your digital notes, remember that the environment in which you create determines the quality of the creation. This canvas is designed to disappear, leaving only you and your narrative.</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Document History Collapsible Sidebar (Right Side) -->
+<aside class="w-[300px] bg-white h-screen border-l border-outline-variant/20 flex flex-col shadow-2xl z-20">
+<!-- Header -->
+<div class="p-4 flex items-center justify-between border-b border-surface-container">
+<h2 class="font-headline text-lg font-bold text-on-surface">Document History</h2>
+<button class="p-1 hover:bg-surface-container-low rounded-full transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Search Bar -->
+<div class="px-4 py-3">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full h-[40px] bg-surface-container-low border-none rounded-lg pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Search documents..." type="text"/>
+</div>
+</div>
+<!-- Document List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar px-2 pb-4 space-y-1">
+<!-- Item State: Active -->
+<div class="group relative p-3 rounded-lg border-l-4 border-primary bg-surface-container-low transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-sm text-on-surface truncate pr-2">Project Architecture 2024</h3>
+<span class="text-[10px] text-primary font-bold uppercase tracking-wider">Active</span>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2 mb-2 leading-relaxed">Defining the core structural components of the new application framework, focusing on modularity...</p>
+<div class="flex items-center justify-between text-[10px] text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">schedule</span>2 hours ago</span>
+<span>12.4 KB</span>
+</div>
+<!-- Action Hover Bar -->
+<div class="absolute inset-0 bg-white/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity rounded-lg">
+<button class="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary hover:text-white transition-all"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+<button class="p-2 bg-error/10 text-error rounded-lg hover:bg-error hover:text-white transition-all"><span class="material-symbols-outlined text-lg">delete</span></button>
+<button class="p-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-all"><span class="material-symbols-outlined text-lg">ios_share</span></button>
+</div>
+</div>
+<!-- Item State: Hovered (Simulated) -->
+<div class="group relative p-3 rounded-lg border-l-4 border-transparent bg-slate-50 transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-sm text-on-surface truncate pr-2">Morning Reflection #42</h3>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2 mb-2 leading-relaxed">Today I woke up thinking about the intersection of technology and human empathy. How can we build...</p>
+<div class="flex items-center justify-between text-[10px] text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">schedule</span>5 hours ago</span>
+<span>4.2 KB</span>
+</div>
+<!-- Action Hover Bar (Forced visible for demonstration) -->
+<div class="absolute inset-0 bg-white/90 backdrop-blur-sm opacity-100 flex items-center justify-center gap-2 transition-opacity rounded-lg">
+<button class="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary hover:text-white transition-all"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+<button class="p-2 bg-error/10 text-error rounded-lg hover:bg-error hover:text-white transition-all"><span class="material-symbols-outlined text-lg">delete</span></button>
+<button class="p-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-all"><span class="material-symbols-outlined text-lg">ios_share</span></button>
+</div>
+</div>
+<!-- Item State: Normal -->
+<div class="group relative p-3 rounded-lg border-l-4 border-transparent hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-sm text-on-surface truncate pr-2">Shopping List &amp; Reminders</h3>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2 mb-2 leading-relaxed">- Organic apples - Sourdough starter - Almond milk (Unsweetened) - Coffee beans from the roastery...</p>
+<div class="flex items-center justify-between text-[10px] text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">schedule</span>Yesterday</span>
+<span>0.8 KB</span>
+</div>
+<!-- Action Hover Bar -->
+<div class="absolute inset-0 bg-white/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity rounded-lg">
+<button class="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary hover:text-white transition-all"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+<button class="p-2 bg-error/10 text-error rounded-lg hover:bg-error hover:text-white transition-all"><span class="material-symbols-outlined text-lg">delete</span></button>
+<button class="p-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-all"><span class="material-symbols-outlined text-lg">ios_share</span></button>
+</div>
+</div>
+<!-- Item State: Normal -->
+<div class="group relative p-3 rounded-lg border-l-4 border-transparent hover:bg-surface-container-low transition-all cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-bold text-sm text-on-surface truncate pr-2">Draft: Q3 Roadmap</h3>
+</div>
+<p class="text-xs text-on-surface-variant line-clamp-2 mb-2 leading-relaxed">Focus areas for the upcoming quarter include real-time collaboration and end-to-end encryption...</p>
+<div class="flex items-center justify-between text-[10px] text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[12px]">schedule</span>3 days ago</span>
+<span>28.1 KB</span>
+</div>
+<!-- Action Hover Bar -->
+<div class="absolute inset-0 bg-white/90 backdrop-blur-sm opacity-0 group-hover:opacity-100 flex items-center justify-center gap-2 transition-opacity rounded-lg">
+<button class="p-2 bg-primary/10 text-primary rounded-lg hover:bg-primary hover:text-white transition-all"><span class="material-symbols-outlined text-lg">open_in_new</span></button>
+<button class="p-2 bg-error/10 text-error rounded-lg hover:bg-error hover:text-white transition-all"><span class="material-symbols-outlined text-lg">delete</span></button>
+<button class="p-2 bg-slate-100 text-slate-600 rounded-lg hover:bg-slate-200 transition-all"><span class="material-symbols-outlined text-lg">ios_share</span></button>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="p-4 bg-slate-50 border-t border-outline-variant/20">
+<div class="mb-4">
+<div class="flex justify-between text-[11px] font-semibold text-on-surface-variant mb-1.5 uppercase tracking-wider">
+<span>Storage Usage</span>
+<span>2.4 MB of 5 MB</span>
+</div>
+<div class="w-full bg-slate-200 rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 48%"></div>
+</div>
+</div>
+<button class="w-full py-2.5 rounded-lg text-xs font-bold text-error border border-error/20 hover:bg-error hover:text-white transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-base">mop</span>
+                Clear all history
+            </button>
+</div>
+</aside>
+</body></html>

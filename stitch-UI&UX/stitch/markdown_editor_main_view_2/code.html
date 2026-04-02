@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Architect | Markdown Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-container": "#fffbff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-container": "#b55d00",
+                        "tertiary-fixed": "#ffdcc5",
+                        "primary-fixed": "#e1e0ff",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb783",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "background": "#f8f9ff",
+                        "secondary-container": "#bdbefe",
+                        "on-tertiary-fixed": "#301400",
+                        "on-primary-fixed": "#07006c",
+                        "on-tertiary-fixed-variant": "#703700",
+                        "primary-container": "#6063ee",
+                        "surface-bright": "#f8f9ff",
+                        "surface-container-high": "#dce9ff",
+                        "outline-variant": "#c7c4d7",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-surface": "#0b1c30",
+                        "secondary": "#575992",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-background": "#0b1c30",
+                        "on-secondary-container": "#494b83",
+                        "surface-container": "#e5eeff",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#eff4ff",
+                        "on-secondary-fixed": "#13144a",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#494bd6",
+                        "error": "#ba1a1a",
+                        "primary": "#4648d4",
+                        "on-surface-variant": "#464554",
+                        "inverse-surface": "#213145",
+                        "inverse-primary": "#c0c1ff",
+                        "surface": "#f8f9ff",
+                        "tertiary": "#904900",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "surface-dim": "#cbdbf5",
+                        "surface-variant": "#d3e4fe",
+                        "outline": "#767586",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "on-secondary-fixed-variant": "#404178",
+                        "on-primary-container": "#fffbff",
+                        "secondary-fixed": "#e1e0ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "mono": ["JetBrains Mono"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .editor-scrollbar::-webkit-scrollbar { width: 4px; }
+        .editor-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .editor-scrollbar::-webkit-scrollbar-thumb { background: #e5eeff; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-indigo-50/80 dark:bg-slate-900/80 backdrop-blur-xl flex justify-between items-center w-full px-6 sticky top-0 z-50 h-[60px] border-b border-indigo-100/20 dark:border-slate-800/20">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-indigo-700 dark:text-indigo-300 font-headline tracking-tight">The Editorial Architect</span>
+<nav class="hidden md:flex items-center gap-6 h-[60px]">
+<a class="text-indigo-700 dark:text-indigo-300 border-b-2 border-indigo-600 h-full flex items-center px-1 font-manrope font-semibold tracking-tight transition-all active:scale-95 duration-150" href="#">Documents</a>
+<a class="text-slate-500 dark:text-slate-400 hover:bg-indigo-100/50 dark:hover:bg-slate-800/50 transition-colors h-full flex items-center px-1 font-manrope font-semibold tracking-tight" href="#">Templates</a>
+</nav>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl mr-4">
+<button class="p-1.5 rounded-lg hover:bg-indigo-100/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="dark_mode">dark_mode</span>
+</button>
+<button class="p-1.5 rounded-lg hover:bg-indigo-100/50 transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px]" data-icon="settings">settings</span>
+</button>
+</div>
+<button class="px-4 py-1.5 text-sm font-semibold text-primary hover:bg-surface-container-high transition-colors rounded-lg">Download</button>
+<button class="px-5 py-1.5 text-sm font-semibold bg-gradient-to-r from-primary to-primary-container text-white rounded-lg active:scale-95 transition-all shadow-sm">Save</button>
+<div class="ml-2 w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/20">
+<img alt="User Profile" data-alt="close-up professional portrait of a modern digital artist with soft lighting and clean minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe47hmnxVs1m0d5kdDtwAW3sZWwi07MEkJ5ysNggSur-CL7Gw2sXnCxHUZy-DvuYBLfWaiyZFxVBHDiSmXi9M1alCsaUdNx5AggTpq0ATZeJAlrrH1Tg0mfh7szADZFabYebfFbI1S-Iq8IDm5DAM8f5NbbJPImYT_ZkAd_zgpbMMMc8uHyKltgbf33t6sTk105cuUFB6xibwY6g345hcvxPVNf7rVDxP2lF6nbaa24uGeDcbxxpj7rkphwCHv66l6TiNYCaBbLOo"/>
+</div>
+</div>
+</header>
+<div class="flex h-[calc(100vh-60px)] w-full relative">
+<!-- Main Content Area: Split View -->
+<main class="flex-1 flex overflow-hidden">
+<!-- Left Panel: Markdown Editor -->
+<section class="flex-1 flex flex-col bg-surface-container-lowest border-r border-indigo-100/30">
+<div class="flex items-center justify-between px-6 py-2 bg-surface-container-low border-b border-indigo-100/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="edit_note">edit_note</span>
+<span class="text-[11px] font-bold tracking-widest text-on-surface-variant/70 font-label">MARKDOWN EDITOR</span>
+</div>
+<div class="flex gap-4">
+<span class="text-[10px] font-medium text-on-surface-variant/50">UTF-8</span>
+<span class="text-[10px] font-medium text-on-surface-variant/50">Ln 24, Col 12</span>
+</div>
+</div>
+<div class="flex-1 flex font-mono text-[14px] leading-relaxed overflow-hidden">
+<!-- Line Numbers -->
+<div class="w-12 bg-surface-container-low text-right pr-4 py-6 text-on-surface-variant/30 select-none">
+                        1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20
+                    </div>
+<!-- Text Area -->
+<div class="flex-1 p-6 overflow-y-auto editor-scrollbar focus:outline-none">
+<span class="text-tertiary"># 01. The Art of Digital Curation</span><br/>
+<br/>
+<span class="text-primary-container font-semibold">## Design Philosophy</span><br/>
+                        This system rejects the <span class="text-on-secondary-container bg-secondary-container/20 px-1 rounded">"SaaS-standard"</span> look of rigid grids and heavy borders. Instead, it adopts an **Editorial Architect** philosophy.<br/>
+<br/>
+<span class="text-primary-container font-semibold">## Core Principles</span><br/>
+                        - <span class="text-secondary">Spatial Rhythm</span> over grid lines.<br/>
+                        - <span class="text-secondary">Tonal Shifts</span> for hierarchy.<br/>
+                        - <span class="text-secondary">Intentional Asymmetry</span> for visual interest.<br/>
+<br/>
+<span class="text-tertiary">```javascript</span><br/>
+<span class="text-on-surface-variant/60">function curateContent(data) {</span><br/>
+<span class="text-on-surface-variant/60">  return data.map(item =&gt; ({...item, premium: true}));</span><br/>
+<span class="text-on-surface-variant/60">}</span><br/>
+<span class="text-tertiary">```</span><br/>
+<br/>
+                        As we develop this platform, we prioritize the <span class="italic text-on-surface-variant/80">Act of Creation</span>. The UI serves as a silent companion, receding when focus is required and surfacing precisely when an action is needed.<br/>
+<br/>
+<div class="w-[2px] h-[18px] bg-primary animate-pulse inline-block align-middle"></div>
+</div>
+</div>
+</section>
+<!-- Right Panel: Live Preview -->
+<section class="flex-1 flex flex-col bg-surface-bright">
+<div class="flex items-center justify-between px-6 py-2 bg-surface-container-low border-b border-indigo-100/20">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]" data-icon="visibility">visibility</span>
+<span class="text-[11px] font-bold tracking-widest text-on-surface-variant/70 font-label">LIVE PREVIEW</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1 rounded hover:bg-surface-container-high text-on-surface-variant/60"><span class="material-symbols-outlined text-[18px]" data-icon="open_in_new">open_in_new</span></button>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto p-12 editor-scrollbar">
+<div class="max-w-[650px] mx-auto">
+<h1 class="font-headline text-4xl font-extrabold text-on-surface mb-8 tracking-tight">01. The Art of Digital Curation</h1>
+<h2 class="font-headline text-2xl font-bold text-primary mb-4">Design Philosophy</h2>
+<p class="text-lg text-on-surface/80 leading-[1.8] mb-6">
+                            This system rejects the <span class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded-full text-base font-semibold">"SaaS-standard"</span> look of rigid grids and heavy borders. Instead, it adopts an <strong class="text-on-surface">Editorial Architect</strong> philosophy.
+                        </p>
+<h2 class="font-headline text-2xl font-bold text-primary mb-4">Core Principles</h2>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mt-2.5 shrink-0"></span>
+<span class="text-lg text-on-surface/80"><strong class="text-on-surface">Spatial Rhythm</strong> over grid lines.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mt-2.5 shrink-0"></span>
+<span class="text-lg text-on-surface/80"><strong class="text-on-surface">Tonal Shifts</strong> for hierarchy.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mt-2.5 shrink-0"></span>
+<span class="text-lg text-on-surface/80"><strong class="text-on-surface">Intentional Asymmetry</strong> for visual interest.</span>
+</li>
+</ul>
+<div class="bg-surface-container rounded-xl p-6 mb-8 border border-outline-variant/10">
+<pre class="font-mono text-sm text-on-secondary-fixed"><code><span class="text-primary-fixed-dim">function</span> <span class="text-secondary">curateContent</span>(data) {
+  <span class="text-primary-fixed-dim">return</span> data.map(item =&gt; ({...item, premium: <span class="text-tertiary">true</span>}));
+}</code></pre>
+</div>
+<p class="text-lg text-on-surface/80 leading-[1.8]">
+                            As we develop this platform, we prioritize the <span class="italic text-on-surface-variant font-medium">Act of Creation</span>. The UI serves as a silent companion, receding when focus is required and surfacing precisely when an action is needed.
+                        </p>
+</div>
+</div>
+</section>
+</main>
+<!-- SideNavBar (Collapsible Logic Visualized) -->
+<aside class="fixed right-0 top-[60px] h-[calc(100vh-60px)] flex flex-col p-4 bg-indigo-50 dark:bg-slate-950 h-full w-64 border-l border-indigo-100 dark:border-slate-800 transition-all duration-200 ease-in-out z-40">
+<div class="flex items-center gap-3 mb-8 px-2">
+<div class="w-10 h-10 rounded-xl bg-white dark:bg-slate-900 flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-indigo-600" data-icon="edit_note">edit_note</span>
+</div>
+<div>
+<h3 class="text-sm font-bold text-indigo-700 font-inter">Library</h3>
+<p class="text-[10px] text-slate-500 font-inter uppercase tracking-widest">Manage Drafts</p>
+</div>
+</div>
+<button class="w-full py-2.5 mb-6 bg-gradient-to-br from-primary to-primary-container text-white text-xs font-bold rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="add">add</span>
+                New Document
+            </button>
+<div class="flex flex-col gap-1 overflow-y-auto flex-1">
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-indigo-700 dark:text-indigo-300 font-semibold bg-white dark:bg-slate-900 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit_note">edit_note</span>
+<span class="text-sm font-inter">Current</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-white/50 dark:hover:bg-slate-900/50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="history">history</span>
+<span class="text-sm font-inter">History</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-white/50 dark:hover:bg-slate-900/50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="star">star</span>
+<span class="text-sm font-inter">Favorites</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 hover:bg-white/50 dark:hover:bg-slate-900/50 rounded-lg transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span>
+<span class="text-sm font-inter">Trash</span>
+</a>
+</nav>
+<div class="mt-8 px-2">
+<p class="text-[10px] font-bold text-slate-400 mb-3 tracking-widest uppercase">RECENT PROJECTS</p>
+<div class="space-y-4">
+<div class="group cursor-pointer">
+<p class="text-xs font-semibold text-on-surface group-hover:text-primary transition-colors">Manifesto_Final.md</p>
+<p class="text-[10px] text-slate-500">2 hours ago</p>
+</div>
+<div class="group cursor-pointer">
+<p class="text-xs font-semibold text-on-surface group-hover:text-primary transition-colors">Spring_Launch.md</p>
+<p class="text-[10px] text-slate-500">Yesterday</p>
+</div>
+<div class="group cursor-pointer">
+<p class="text-xs font-semibold text-on-surface group-hover:text-primary transition-colors">Architectural_V3.md</p>
+<p class="text-[10px] text-slate-500">Nov 12, 2023</p>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-4 border-t border-indigo-100/30">
+<div class="flex items-center justify-between px-2">
+<span class="text-[10px] font-medium text-slate-400">Syncing...</span>
+<span class="material-symbols-outlined text-[16px] text-indigo-400 animate-spin" data-icon="sync" style="font-variation-settings: 'FILL' 0;">sync</span>
+</div>
+</div>
+</aside>
+</div>
+<!-- Bottom Status (Small Utility) -->
+<div class="fixed bottom-0 left-0 right-0 h-8 bg-surface-container border-t border-indigo-100/10 flex items-center justify-between px-4 z-50">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="text-[10px] font-semibold text-on-surface-variant/70 uppercase tracking-tighter">System Ready</span>
+</div>
+<span class="text-[10px] text-on-surface-variant/40">v2.4.0-alpha</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-[10px] font-medium text-on-surface-variant/60">Markdown Style Guide</span>
+<span class="text-[10px] font-medium text-on-surface-variant/60">Help Center</span>
+</div>
+</div>
+<div class="fixed bottom-12 right-6 z-[60] flex items-center gap-3 bg-emerald-600 text-white px-4 py-3 rounded-xl shadow-2xl animate-in fade-in slide-in-from-right-8 duration-300" id="success-toast">
+<div class="flex items-center justify-center bg-white/20 rounded-full p-1">
+<span class="material-symbols-outlined text-[20px]" data-icon="check">check</span>
+</div>
+<div class="flex flex-col">
+<p class="text-sm font-bold leading-none">Document saved successfully!</p>
+</div>
+<button class="ml-2 text-white/60 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+</div></body></html>

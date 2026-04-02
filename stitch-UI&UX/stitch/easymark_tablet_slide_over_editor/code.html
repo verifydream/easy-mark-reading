@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&amp;family=Inter:wght@400;500;700;900&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#703700",
+              "on-secondary": "#ffffff",
+              "tertiary-container": "#b55d00",
+              "tertiary": "#904900",
+              "inverse-on-surface": "#eaf1ff",
+              "surface-container-lowest": "#ffffff",
+              "primary-container": "#6063ee",
+              "on-primary-fixed": "#07006c",
+              "outline-variant": "#c7c4d7",
+              "inverse-surface": "#213145",
+              "surface-container-high": "#dce9ff",
+              "surface-container-highest": "#d3e4fe",
+              "on-secondary-fixed": "#13144a",
+              "on-background": "#0b1c30",
+              "surface-dim": "#cbdbf5",
+              "tertiary-fixed": "#ffdcc5",
+              "on-error": "#ffffff",
+              "secondary": "#575992",
+              "surface": "#f8f9ff",
+              "secondary-fixed-dim": "#c0c1ff",
+              "tertiary-fixed-dim": "#ffb783",
+              "surface-variant": "#d3e4fe",
+              "surface-bright": "#f8f9ff",
+              "on-secondary-container": "#494b83",
+              "primary-fixed-dim": "#c0c1ff",
+              "error": "#ba1a1a",
+              "primary-fixed": "#e1e0ff",
+              "on-surface": "#0b1c30",
+              "surface-container-low": "#eff4ff",
+              "secondary-fixed": "#e1e0ff",
+              "background": "#f8f9ff",
+              "secondary-container": "#bdbefe",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#404178",
+              "on-error-container": "#93000a",
+              "surface-container": "#e5eeff",
+              "surface-tint": "#494bd6",
+              "on-tertiary-fixed": "#301400",
+              "outline": "#767586",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#fffbff",
+              "primary": "#4648d4",
+              "inverse-primary": "#c0c1ff",
+              "on-tertiary-container": "#fffbff",
+              "on-surface-variant": "#464554",
+              "on-primary-fixed-variant": "#2f2ebe"
+            },
+            fontFamily: {
+              "headline": ["Manrope"],
+              "body": ["Inter"],
+              "label": ["Inter"],
+              "mono": ["JetBrains Mono"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        .editor-canvas { font-family: 'JetBrains Mono', monospace; line-height: 1.8; }
+        .glass-header { backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-100/50 dark:border-slate-800/50 shadow-sm dark:shadow-none docked full-width top-0 sticky z-50">
+<div class="flex justify-between items-center px-4 h-16 w-full max-w-screen-xl mx-auto">
+<div class="flex items-center gap-4">
+<button class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400" data-icon="menu">menu</span>
+</button>
+<span class="text-xl font-extrabold text-slate-900 dark:text-white font-manrope font-semibold tracking-tight">The Curator</span>
+</div>
+<div class="flex items-center gap-2">
+<button class="bg-surface-container-high text-primary px-4 py-2 rounded-lg font-bold flex items-center gap-2 hover:bg-surface-container-highest transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span>
+<span class="font-label text-sm">Edit</span>
+</button>
+<button class="hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 p-2 rounded-full">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-400" data-icon="dark_mode">dark_mode</span>
+</button>
+</div>
+</div>
+</header>
+<main class="relative min-h-[calc(100vh-64px)] flex">
+<!-- Editor Side Panel (Partially Open Slide-over Simulation) -->
+<aside class="fixed inset-y-0 left-0 z-40 w-[450px] bg-surface-container-low shadow-2xl transition-transform transform translate-x-0 border-r border-outline-variant/20 pt-16">
+<div class="h-full flex flex-col p-8">
+<div class="flex items-center justify-between mb-8">
+<h2 class="font-headline font-semibold text-lg text-on-surface-variant">Markdown Editor</h2>
+<div class="flex gap-2">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-1 rounded-full font-bold">DRAFT</span>
+</div>
+</div>
+<div class="flex-1 editor-canvas bg-surface-container-lowest rounded-xl p-8 shadow-sm border border-outline-variant/10 text-on-surface text-sm overflow-y-auto">
+<p class="text-primary/60 mb-4"># The Architecture of Silence</p>
+<p class="mb-6">Designing for the modern web requires a rejection of noise. We often find ourselves buried under layers of grids and borders that define boundaries we never asked for.</p>
+<p class="text-primary/60 mb-4">## The No-Line Rule</p>
+<p class="mb-6">In the "Editorial Architect" philosophy, we use spatial rhythm. Surfaces nest within each other like fine stationery. A card shouldn't need a 1px border to exist; it should exist because it rests on a different plane of light.</p>
+<p class="text-primary/60 mb-4">&gt; "Good design is as little design as possible."</p>
+<p class="mb-6">The goal is to provide a "Zen" environment where the act of creation is unstrained. By using JetBrains Mono at a generous line-height, the text breathes.</p>
+<div class="h-12 w-[2px] bg-primary animate-pulse inline-block align-middle ml-1"></div>
+</div>
+<div class="mt-8 flex justify-end gap-3">
+<button class="text-on-surface-variant font-label text-sm font-medium hover:bg-slate-100 px-4 py-2 rounded-lg transition-colors">Discard</button>
+<button class="bg-gradient-to-r from-primary to-primary-container text-white px-6 py-2 rounded-lg font-bold shadow-lg hover:shadow-primary/20 transition-all active:scale-95 duration-200">Save Changes</button>
+</div>
+</div>
+</aside>
+<!-- Main Preview Canvas -->
+<section class="flex-1 ml-0 md:ml-[450px] bg-surface min-h-screen pt-12 pb-24 px-12 lg:px-24">
+<div class="max-w-3xl mx-auto">
+<nav class="mb-12 flex gap-4 text-xs font-bold uppercase tracking-widest text-on-surface-variant/40">
+<span class="text-primary border-b-2 border-primary pb-1">Documentation</span>
+<span>Systems</span>
+<span>Editorial</span>
+</nav>
+<article class="prose prose-slate max-w-none">
+<h1 class="font-headline font-extrabold text-5xl md:text-6xl text-on-surface mb-8 tracking-tight leading-tight">
+                        The Architecture <br/> of Silence
+                    </h1>
+<div class="flex items-center gap-4 mb-12">
+<div class="h-12 w-12 rounded-full overflow-hidden bg-surface-container-high border-2 border-white shadow-sm">
+<img class="w-full h-full object-cover" data-alt="close-up portrait of a professional designer with minimalist glasses in soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFK8BhegdfZCCVgSJiAouGHhZPA21XBlAtjaLRVmFeMULXsAtDZZMbezl2sLdXgA830-j3lVDyxv4Wg-6fFeFzl9y7C_bWwhwBHvFs89DFXyq0ujr2GhM3_v_edQ_idLmujTKluy4_yAHUzXpPNqF9wYcyJLDJSOrx3o6rVgEVv4E0LZUjYPt3_gwJAaH2QeXh0tH8JHz1Vz667dVXpjssdHxzUUVT-DmNoYD7vT4dqfuZ6ZMRpGcnIXpk8INPlXOo5eTRp5o2-BI"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Elena Vancore</p>
+<p class="text-xs text-on-surface-variant font-medium">Head of Design · 12 min read</p>
+</div>
+</div>
+<div class="aspect-[16/9] w-full rounded-2xl overflow-hidden mb-12 shadow-xl group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="abstract architectural shot of a brutalist building with clean shadows and geometric lines under a clear blue sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZliMRPMLwURb4yCAjJiED6c3fJR9GZnjvO8SP5TxzgdMpAl-ue2VyfTNiZPLRPyOd6WiAQdB47kmu83XO8C9MMm2KEF-3oZMJ-bRURfYUfRCyVwA2OjBY8skGuE1UBAREYKY3ij0Kxq8wzABTWuXnWNYS7awz_x-Jw-Nwh01QwP9YPBMLKrnrCmNEamTh-LLrO8pJ8ZzhTyRduKNeRH1mVoMlaVmA8SGPhrOFz3CXVXwXUWw2BLZ6CL4DgHbaaWfTqafefHDg-NQ"/>
+</div>
+<div class="font-body text-lg leading-relaxed text-on-surface-variant space-y-8">
+<p class="first-letter:text-5xl first-letter:font-bold first-letter:text-primary first-letter:mr-3 first-letter:float-left">
+                            Designing for the modern web requires a rejection of noise. We often find ourselves buried under layers of grids and borders that define boundaries we never asked for. The Digital Curator rejects the SaaS-standard look.
+                        </p>
+<h2 class="font-headline font-bold text-3xl text-on-surface mt-16 mb-6">The No-Line Rule</h2>
+<p>
+                            In the "Editorial Architect" philosophy, we use spatial rhythm. Surfaces nest within each other like fine stationery. A card shouldn't need a 1px border to exist; it should exist because it rests on a different plane of light.
+                        </p>
+<div class="grid grid-cols-2 gap-8 my-12">
+<div class="bg-surface-container-low p-8 rounded-2xl">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="auto_awesome">auto_awesome</span>
+<h3 class="font-headline font-bold text-on-surface mb-2">Intentional Rhythm</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Breaking the mechanical 50/50 split creates a curated, asymmetric flow that guides the eye.</p>
+</div>
+<div class="bg-surface-container-low p-8 rounded-2xl">
+<span class="material-symbols-outlined text-tertiary mb-4" data-icon="palette">palette</span>
+<h3 class="font-headline font-bold text-on-surface mb-2">Tonal Depth</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Shadows are ambient light, not heavy strokes. Use depth to imply hierarchy.</p>
+</div>
+</div>
+<p>
+                            The goal is to provide a "Zen" environment where the act of creation is unstrained. By using JetBrains Mono at a generous line-height, the text breathes, allowing the editor to become a high-end writing environment rather than just a utility.
+                        </p>
+</div>
+</article>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-lg border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] md:hidden">
+<button class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 px-8 py-2 hover:text-indigo-500 transition-colors active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="edit_square">edit_square</span>
+<span class="font-inter text-[11px] font-bold uppercase tracking-wider">Editor</span>
+</button>
+<button class="flex flex-col items-center justify-center bg-indigo-600 text-white rounded-2xl px-8 py-2 active:scale-90 duration-150">
+<span class="material-symbols-outlined mb-1" data-icon="visibility" style="font-variation-settings: 'FILL' 1;">visibility</span>
+<span class="font-inter text-[11px] font-bold uppercase tracking-wider">Preview</span>
+</button>
+</nav>
+<!-- NavigationDrawer (Off-canvas for menu) -->
+<div class="fixed inset-y-0 left-0 z-[60] p-6 bg-slate-50 dark:bg-slate-950 h-full w-80 rounded-r-2xl shadow-2xl dark:shadow-none transition-all duration-300 ease-in-out -translate-x-full">
+<div class="text-2xl font-black text-indigo-700 dark:text-indigo-400 mb-8">The Curator</div>
+<div class="space-y-2">
+<div class="flex items-center gap-4 bg-indigo-100/50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-200 rounded-lg p-3 font-inter text-sm font-medium">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>All Documents</span>
+</div>
+<div class="flex items-center gap-4 text-slate-600 dark:text-slate-400 p-3 font-inter text-sm font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all">
+<span class="material-symbols-outlined" data-icon="edit_note">edit_note</span>
+<span>Recent Drafts</span>
+</div>
+<div class="flex items-center gap-4 text-slate-600 dark:text-slate-400 p-3 font-inter text-sm font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all">
+<span class="material-symbols-outlined" data-icon="auto_awesome_motion">auto_awesome_motion</span>
+<span>Templates</span>
+</div>
+<div class="pt-8 border-t border-outline-variant/10 mt-8">
+<div class="flex items-center gap-4 text-slate-600 dark:text-slate-400 p-3 font-inter text-sm font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Archive</span>
+</div>
+<div class="flex items-center gap-4 text-slate-600 dark:text-slate-400 p-3 font-inter text-sm font-medium hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</div>
+</div>
+</div>
+</div>
+</body></html>
