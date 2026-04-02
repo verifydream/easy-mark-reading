@@ -97,6 +97,45 @@ This is a new single-page application for markdown preview and document manageme
 - *Plain CSS*: More control but slower development
 - *SCSS*: Adds build complexity
 
+**Design System Reference:**
+
+Complete UI/UX designs are available in `stitch-UI&UX/` directory with the following specifications:
+
+**Color Palette (from Design System):**
+- Primary (Indigo): `#6366f1` (500), `#4f46e5` (600), `#4338ca` (700)
+- Success: `#10b981` (Emerald)
+- Warning: `#f59e0b` (Amber)
+- Error: `#f43f5e` (Rose)
+- Neutral (Slate): Full scale from `slate-50` (#f8fafc) to `slate-900` (#0f172a)
+
+**Typography:**
+- UI Font: Inter, system-ui, sans-serif
+- Code Font: JetBrains Mono, Fira Code, monospace
+- Scale: 12px, 14px, 15px, 16px, 18px, 20px, 24px, 32px, 48px
+- Weights: 400 (Regular), 500 (Medium), 600 (Semibold), 700 (Bold)
+
+**Design Assets (stitch-UI&UX/stitch/):**
+1. `markdown_editor_main_view_1/` - Primary split-view layout
+2. `markdown_editor_main_view_2/` - Alternative view variation
+3. `easymark_header_update/` - Header component with logo and controls
+4. `easymark_editor_panel_design/` - Editor panel styling
+5. `easymark_preview_panel_design/` - Preview panel with rendered markdown
+6. `easymark_document_history_sidebar/` - History sidebar component
+7. `easymark_layout_modes_comparison/` - Layout mode variations
+8. `easymark_theme_switcher_comparison/` - Light/dark theme comparison
+9. `easymark_file_import_export_ui/` - Import/export modal
+10. `easymark_keyboard_shortcuts_help_modal/` - Help panel
+11. `easymark_skeleton_empty_states/` - Loading and empty states
+12. `easymark_interaction_animation_guide/` - Micro-interaction specs
+13. `easymark_mobile_portrait_editor/` - Mobile editor view
+14. `easymark_mobile_portrait_preview/` - Mobile preview view
+15. `easymark_mobile_landscape_view/` - Mobile landscape layout
+16. `easymark_tablet_slide_over_editor/` - Tablet slide-over panel
+17. `easymark_initial_load_state/` - Initial loading state
+18. `easymark_sidebar_import_states/` - Sidebar import variations
+
+**Design System Document:** `stitch-UI&UX/easymark_design_system_specification.html`
+
 ### Animations
 
 **Decision: Use CSS transitions + minimal JavaScript**
